@@ -36,15 +36,17 @@ The backend handles the SQLite database, AI agent orchestration (Gemini), and AP
    ```bash
    cd backend
    ```
-2. Create and activate a virtual environment:
+2. Install `uv` (if not already installed):
    ```bash
-   python -m venv .venv
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   # or on Windows: powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+3. Create a virtual environment and install dependencies:
+   ```bash
+   uv sync
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+   *(Alternatively, if you prefer standard `pip`, you can create a virtual environment manually and run `pip install -r requirements.txt`)*
 4. Environment Variables:
    Create a `.env` file in the `backend/` directory and add your Gemini API Key:
    ```env

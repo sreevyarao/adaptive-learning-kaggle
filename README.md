@@ -32,7 +32,7 @@ The easiest way to run the entire stack—and avoid any cross-platform dependenc
 
 **Prerequisites:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed.
 
-1. Ensure you have your `GEMINI_API_KEY` set as an environment variable, or create a `.env` file in the `backend/` directory:
+1. Create a `.env` file inside the `backend/` directory and paste your Gemini API key:
    ```env
    GEMINI_API_KEY="your_gemini_api_key_here"
    ```
@@ -80,7 +80,7 @@ The backend handles the SQLite database, AI agent orchestration (Gemini), and AP
 
 The frontend is a modern React application utilizing Tailwind CSS and Framer Motion.
 
-**Prerequisites:** Node.js 18+
+**Prerequisites:** Node.js 20+
 
 1. Navigate to the frontend directory:
    ```bash

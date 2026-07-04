@@ -26,7 +26,25 @@ To revolutionize self-paced learning by replacing static courses with an ever-gr
 
 ## 🛠️ How to Run
 
-### 1. Backend Setup (FastAPI & Google ADK)
+### Using Docker (Recommended, especially on Windows)
+
+The easiest way to run the entire stack—and avoid any cross-platform dependency issues (like `weasyprint` requiring GTK3 on Windows)—is using Docker.
+
+**Prerequisites:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed.
+
+1. Ensure you have your `GEMINI_API_KEY` set as an environment variable, or create a `.env` file in the `backend/` directory:
+   ```env
+   GEMINI_API_KEY="your_gemini_api_key_here"
+   ```
+2. Open a terminal in the root project directory and run:
+   ```bash
+   docker compose up --build
+   ```
+3. Open your browser and navigate to `http://localhost:3000`.
+
+---
+
+### Manual Setup
 
 The backend handles the SQLite database, AI agent orchestration (Gemini), and API endpoints.
 

@@ -80,7 +80,6 @@ from google.genai import types
 import uuid
 import tempfile
 import markdown
-from weasyprint import HTML
 from pydantic import BaseModel
 from typing import Dict, Any
 
@@ -358,7 +357,11 @@ async def download_pdf(req: PDFRequest):
     # We use delete=False because FileResponse returns a response that reads the file asynchronously later.
     # The tempfile might be kept around, which is standard for FileResponse without background tasks.
     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    HTML(string=styled_html).write_pdf(tmp.name)
+    try:
+        from weasyprint import HTML
+        HTML(string=styled_html).write_pdf(tmp.name)
+    except (ImportError, OSError) as e:
+        return {"status": "error", "message": "PDF generation failed. On Windows, this feature requires GTK3 to be installed."}
     
     from fastapi.responses import FileResponse
     return FileResponse(tmp.name, media_type="application/pdf", filename="My_Learning_Roadmap.pdf")

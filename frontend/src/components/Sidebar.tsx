@@ -10,9 +10,15 @@ export default function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if mock user is saved
-    const user = localStorage.getItem("mockUser");
-    setIsAuthenticated(!!user);
+    const checkAuth = () => {
+      const user = localStorage.getItem("mockUser");
+      setIsAuthenticated(!!user);
+    };
+
+    checkAuth();
+    
+    window.addEventListener("auth-change", checkAuth);
+    return () => window.removeEventListener("auth-change", checkAuth);
   }, [pathname]);
 
   const handleSignOut = () => {
@@ -23,6 +29,7 @@ export default function Sidebar() {
     localStorage.removeItem("initialDraft");
     localStorage.removeItem("preRequisites");
     localStorage.removeItem("quizAnswers");
+    window.dispatchEvent(new Event("auth-change"));
     setIsAuthenticated(false);
     router.push("/");
   };

@@ -60,6 +60,7 @@ export default function Workspace() {
       const data = await res.json();
       
       localStorage.setItem("mockUser", username);
+      window.dispatchEvent(new Event("auth-change"));
       setIsAuthenticated(true);
       
       if (data.user) {
